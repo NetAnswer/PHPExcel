@@ -2485,7 +2485,7 @@ class PHPExcel_Worksheet implements PHPExcel_IComparable
                     // Cell exists
                     $cell = $this->cellCollection->getCacheData($col.$row);
                     if ($cell->getValue() !== null) {
-						if(PHPExcel_Shared_Date::isDateTime($cell)) {
+						if(PHPExcel_Shared_Date::isDateTime($cell) && !defined('PHPEXCEL_NO_DATE_CONVERSION')) {
 							$returnValue[$rRef][$cRef] = date('Y-m-d', PHPExcel_Shared_Date::ExcelToPHP($cell->getValue()));
 						}
 						else if ($cell->getValue() instanceof PHPExcel_RichText) {
